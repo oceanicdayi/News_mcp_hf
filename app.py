@@ -24,6 +24,13 @@ def fetch_news(max_items: int = 10) -> List[Dict[str, Any]]:
     try:
         feed = feedparser.parse(BBC_NEWS_RSS_URL)
         
+        # Check for parsing errors
+        if feed.bozo and not feed.entries:
+            return [{"error": f"Failed to parse feed: {feed.bozo_exception}"}]
+        
+        if not feed.entries:
+            return [{"error": "No news items found in the feed"}]
+        
         news_items = []
         for entry in feed.entries[:max_items]:
             news_item = {

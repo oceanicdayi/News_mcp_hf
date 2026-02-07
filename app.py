@@ -150,6 +150,8 @@ with gr.Blocks(title="BBC Science & Environment News MCP Server") as demo:
 
 if __name__ == "__main__":
     # Get HF_TOKEN from environment (for authentication if needed)
+    # This token is automatically available in Hugging Face Spaces
+    # and can be used for authenticated API calls if required in the future
     hf_token = os.getenv("HF_TOKEN")
     
     # Launch the Gradio app
